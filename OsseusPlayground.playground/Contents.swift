@@ -46,7 +46,7 @@ extension Placeholder {
         .init(
             spacing: 10,
             alignment: .fill,
-            distribution: .fillProportionally,
+            distribution: .fillEqually,
             inset: .init(
                 top: 32,
                 left: 16,
@@ -77,7 +77,7 @@ extension Placeholder {
                 right: -25
             )
         ),
-        [.shift,.shift,.shift,.shift]
+        [.shift, .shift, .shift, .shift]
     )
     
     static let game: Placeholder = .placeholder(
@@ -106,7 +106,7 @@ extension Placeholder {
             inset: .init(
                 top: 16,
                 left: 16,
-                bottom: 0,
+                bottom: 16,
                 right: 16
             )
         ),
@@ -136,7 +136,7 @@ class MyViewController : UIViewController {
         placeholder.top(to: view)
         placeholder.left(to: view)
         placeholder.right(to: view)
-
+        
         placeholder.render(.casino)
     }
 }
