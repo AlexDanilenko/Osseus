@@ -9,8 +9,12 @@ public class PlaceholderContainer: UIView {
         backgroundColor = UIColor.blue.withAlphaComponent(0.1)
         addSubview(contentStack)
         contentStack.center(in: self)
-        contentStack.edges(to: self
-            , insets: .zero, priority: .fittingSizeLevel, isActive: true)
+        contentStack.edges(
+            to: self,
+            insets: .zero,
+            priority: .fittingSizeLevel,
+            isActive: true
+         )
     }
     
     required init?(coder: NSCoder) {

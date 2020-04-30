@@ -5,88 +5,143 @@ import PlaygroundSupport
 import Osseus
 
 public extension Placeholder.Style {
-    
-    static func rect(color: UIColor, cornerRadius: CGFloat = 0) -> Placeholder.Style {
-        .init(corners: .static(cornerRadius), backgroundColor: color, sizing: .auto)
+    static func rect(color: UIColor, cornerRadius: CGFloat = 0, sizing: Placeholder.Sizing = .auto) -> Placeholder.Style {
+        .init(corners: .static(cornerRadius), backgroundColor: color, sizing: sizing)
     }
-    
-    static func square(color: UIColor, cornerRadius: CGFloat = 0) -> Placeholder.Style {
-        .init(corners: .static(cornerRadius), backgroundColor: color, sizing: .aspect(h: 1, w: 1))
-    }
-    
-    static func circle(color: UIColor, d: CGFloat) -> Placeholder.Style {
-        .init(corners: .round, backgroundColor: color, sizing: .size(.init(width: d, height: d)))
-    }
-    
-    static func autoCircle(color: UIColor) -> Placeholder.Style {
-        .init(corners: .round, backgroundColor: color, sizing: .aspect(h: 1, w: 1))
-    }
-    
-    static let grayRect: Placeholder.Style = .rect(color: .lightGray)
-    static let redRect: Placeholder.Style =  .rect(color: .red)
-    static let clear: Placeholder.Style = .rect(color: .clear)
-    static let blueRect: Placeholder.Style = .rect(color: .blue)
-        
-    static let grayCercle: Placeholder.Style = .autoCircle(color: .lightGray)
 }
 
 extension Placeholder {
     
-    static let lLabel: Placeholder = .placeholder(
-        .rect(color: .lightGray, cornerRadius: 4)
+    static let lobby: Placeholder = .placeholder(
+        .rect(
+            color: .lightGray,
+            cornerRadius: 2,
+            sizing: .height(16)
+        )
     )
-    
-    static let labels: Placeholder = .vContainer(
-        VStack.init(
-            spacing: 10,
+    static let lobbyBlock: Placeholder = .hContainer(
+        .init(
+            spacing: 56,
             alignment: .fill,
             distribution: .fillEqually,
-            inset: .init(top: 0, left: 3, bottom: 0, right: 0)
-        ),
-        [.lLabel, .lLabel, .lLabel]
-    )
-    
-    static let avatar: Placeholder = .placeholder(.grayCercle)
-    
-    static let user: Placeholder =
-        .container(
-            .redRect,
-            .hContainer(
-                .init(spacing: 0, alignment: .center, distribution: .fill, inset: .zero),
-                [.avatar, .labels]
+            inset: .init(
+                top: 20,
+                left: 30,
+                bottom: 0,
+                right: 30
             )
-    )
-
-    static let splitUser: Placeholder = .hContainer(
-        .init(spacing: 3, alignment: .fill, distribution: .fillEqually, inset: .zero),
-        [.user, .user, .user]
+        ),
+        [.lobby, .lobby, .lobby]
     )
     
-    static let blocks: Placeholder = .vContainer(
-        .init(spacing: 30,
-              alignment: .fill,
-              distribution: .fillEqually,
-              inset: .init(top: 100, left: 20, bottom: 20, right: 20)),
-        [.splitUser, .splitUser, .splitUser]
+    static let banner: Placeholder = .placeholder(
+        .rect(
+            color: .lightGray,
+            cornerRadius: 12,
+            sizing: .height(220)
+        )
     )
+    
+    static let bannersBlock: Placeholder = .hContainer(
+        .init(
+            spacing: 10,
+            alignment: .fill,
+            distribution: .fillProportionally,
+            inset: .init(
+                top: 32,
+                left: 16,
+                bottom: 16,
+                right: -300
+            )
+        ),
+        [.banner, .banner]
+    )
+    
+    static let shift: Placeholder = .placeholder(
+        .rect(
+            color: .lightGray,
+            cornerRadius: 8,
+            sizing: .height(40)
+        )
+    )
+    
+    static let shifts: Placeholder = .hContainer(
+        .init(
+            spacing: 8,
+            alignment: .fill,
+            distribution: .fillEqually,
+            inset: .init(
+                top: 10,
+                left: 16,
+                bottom: 10,
+                right: -25
+            )
+        ),
+        [.shift,.shift,.shift,.shift]
+    )
+    
+    static let game: Placeholder = .placeholder(
+        .init(
+            corners: .static(26),
+            backgroundColor: .lightGray,
+            sizing: .height(164)
+        )
+    )
+    
+    static let hGameBundle: Placeholder = .hContainer(
+        .init(
+            spacing: 16,
+            alignment: .fill,
+            distribution: .fillProportionally,
+            inset: .zero
+        ),
+        [.game, .game]
+    )
+    
+    static let vGameBundle: Placeholder = .vContainer(
+        .init(
+            spacing: 16,
+            alignment: .fill,
+            distribution: .fillEqually,
+            inset: .init(
+                top: 16,
+                left: 16,
+                bottom: 0,
+                right: 16
+            )
+        ),
+        [.hGameBundle, .hGameBundle]
+    )
+    
+    static let casino: Placeholder = .vContainer(
+        .init(
+            spacing: 0,
+            alignment: .fill,
+            distribution: .fillProportionally,
+            inset: .zero
+        ),
+        [.lobbyBlock, .bannersBlock, .shifts, .vGameBundle]
+    )
+    
 }
 
 class MyViewController : UIViewController {
-        
+
     let placeholder: PlaceholderContainer = .init()
     override func loadView() {
         self.view = UIView()
         self.view.backgroundColor = .white
         self.view.addSubview(placeholder)
-        
+
         placeholder.top(to: view)
         placeholder.left(to: view)
         placeholder.right(to: view)
-        placeholder.bottom(to: view, offset: -300)
-        
-        placeholder.render(.blocks)
+
+        placeholder.render(.casino)
     }
 }
 
 // Present the view controller in the Live View window
-PlaygroundPage.current.liveView = MyViewController()
+let vc = MyViewController()
+    
+PlaygroundPage.current.liveView = vc

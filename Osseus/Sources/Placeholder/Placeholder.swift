@@ -9,6 +9,8 @@ public enum Placeholder {
     public enum Sizing {
         case auto
         case size(CGSize)
+        case height(CGFloat)
+        case width(CGFloat)
         case aspect(h: CGFloat, w: CGFloat)
         
         public static let square: Sizing = .aspect(h: 1, w: 1)

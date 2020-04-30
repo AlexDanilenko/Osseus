@@ -27,6 +27,10 @@ public class PlaceholderView: UIView {
             return
         case let .aspect(h: height, w: width):
             heightAnchor.constraint(equalTo: widthAnchor, multiplier: height/width).isActive = true
+        case let .height(height):
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        case let .width(width):
+            widthAnchor.constraint(equalToConstant: width).isActive = true
         case let .size(size):
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
             widthAnchor.constraint(equalToConstant: size.width).isActive = true

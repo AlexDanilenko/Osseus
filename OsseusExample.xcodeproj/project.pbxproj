@@ -14,7 +14,7 @@
 		FE106CE3245B6AF200042DB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE106CE2245B6AF200042DB1 /* Assets.xcassets */; };
 		FE106CE6245B6AF200042DB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE106CE4245B6AF200042DB1 /* LaunchScreen.storyboard */; };
 		FE3615D7245B71F800123BF2 /* Osseus in Frameworks */ = {isa = PBXBuildFile; productRef = FE3615D6245B71F800123BF2 /* Osseus */; };
-		FE361621245B748900123BF2 /* OsseusFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = FE361611245B748900123BF2 /* OsseusFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE361621245B748900123BF2 /* Osseus.h in Headers */ = {isa = PBXBuildFile; fileRef = FE361611245B748900123BF2 /* Osseus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE361624245B748900123BF2 /* Osseus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE36160F245B748900123BF2 /* Osseus.framework */; };
 		FE361625245B748900123BF2 /* Osseus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE36160F245B748900123BF2 /* Osseus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE361635245B750200123BF2 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE36162E245B750200123BF2 /* Constraints.swift */; };
@@ -60,7 +60,7 @@
 		FE106CE5245B6AF200042DB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE106CE7245B6AF200042DB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE36160F245B748900123BF2 /* Osseus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Osseus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE361611245B748900123BF2 /* OsseusFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OsseusFramework.h; sourceTree = "<group>"; };
+		FE361611245B748900123BF2 /* Osseus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Osseus.h; sourceTree = "<group>"; };
 		FE361612245B748900123BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE36162E245B750200123BF2 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		FE36162F245B750200123BF2 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				FE36162C245B750200123BF2 /* Sources */,
-				FE361611245B748900123BF2 /* OsseusFramework.h */,
+				FE361611245B748900123BF2 /* Osseus.h */,
 				FE361612245B748900123BF2 /* Info.plist */,
 			);
 			path = Osseus;
@@ -186,7 +186,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE361621245B748900123BF2 /* OsseusFramework.h in Headers */,
+				FE361621245B748900123BF2 /* Osseus.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
