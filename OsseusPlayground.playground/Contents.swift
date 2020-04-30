@@ -2,7 +2,7 @@
   
 import UIKit
 import PlaygroundSupport
-
+import Osseus
 
 public extension Placeholder.Style {
     

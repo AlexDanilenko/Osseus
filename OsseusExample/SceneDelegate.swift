@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  OsseusTest
+//  OsseusExample
 //
 //  Created by Oleksandr Danylenko on 30.04.2020.
 //  Copyright © 2020 Oleksandr Danylenko. All rights reserved.
