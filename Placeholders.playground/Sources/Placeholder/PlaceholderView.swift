@@ -1,77 +1,39 @@
 import UIKit
 
-public class PlaceholderView: UIView {
-//    public typealias Sizing = Either<CGSize, UIEdgeInsets>
-    
-    
-    public enum Sizing {
-        case auto
-        case size(CGSize)
-        case aspect(h: CGFloat, w: CGFloat)
-        
-        public static let square: Sizing = .aspect(h: 1, w: 1)
-    }
-    
-    public struct Body {
-        public enum Corners {
-            case round
-            case `static`(CGFloat)
-        }
-        let corners: Corners
-        let backgroundColor: UIColor
-        let sizing: Sizing
-        
-        public init(corners: Corners, backgroundColor: UIColor, sizing: Sizing) {
-            self.corners = corners
-            self.backgroundColor = backgroundColor
-            self.sizing = sizing
-        }
-    }
+public class PlaceholderView: UIView {    
     
     private let view = UIView(frame: .zero)
-    private let body: Body
+    private let style: Placeholder.Style
     
-    public init(body: Body) {
-        self.body = body
+    public init(style: Placeholder.Style) {
+        self.style = style
         super.init(frame: .zero)
-        render(body: body)
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
         fatalError("init from code")
     }
     
-    func render(body: Body) {
-        backgroundColor = body.backgroundColor
-        translatesAutoresizingMaskIntoConstraints = false
-        adopt(layout: body.sizing)
+    private func render(style: Placeholder.Style) {
+        backgroundColor = style.backgroundColor
+        adopt(layout: style.sizing)
+        set(corners: style.corners, for: self)
     }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        set(corners: body.corners, for: self)
-    }
-    public override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        guard superview != nil else { return }
-        
-    }
-    
-    private func adopt(layout: Sizing) {
+    private func adopt(layout: Placeholder.Sizing) {
         switch layout {
         case .auto:
             return
         case let .aspect(h: height, w: width):
-            print("adopting")
             heightAnchor.constraint(equalTo: widthAnchor, multiplier: height/width).isActive = true
-            print("adopted")
         case let .size(size):
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
             widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
     }
     
-    private func set(corners: Body.Corners, for view: UIView) {
+    private func set(corners: Placeholder.Style.Corners, for view: UIView) {
         switch corners {
         case .round:
             view.layer.cornerRadius = view.bounds.size.height / 2
@@ -80,6 +42,11 @@ public class PlaceholderView: UIView {
         }
         
         view.layer.masksToBounds = true
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        render(style: style)
     }
 }
 
